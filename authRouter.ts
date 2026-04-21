@@ -17,7 +17,8 @@ const checkAuth = (req: any, res: any, next: any) => {
     return res.status(401).json({ error: "Please sign in!" });
   }
 
-  req.user = userSessio
+  req.user = userSession;
+};
 
 authRouter.post("/login", (req, res) => {
   const { username, password } = req.body ?? {};
