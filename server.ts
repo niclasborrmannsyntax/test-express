@@ -1,8 +1,8 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
-import { userRouter } from "./routes/users.routes.ts";
-import { authRouter } from "./routes/auth.routes.ts";
+import { userRouter } from "./src/routes/users.routes.ts";
+import { authRouter } from "./src/routes/auth.routes.ts";
 
 // INIT
 const PORT = 3001;
