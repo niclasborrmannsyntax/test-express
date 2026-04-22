@@ -3,17 +3,23 @@ import { v4 as uuid } from "uuid";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 
-// ...
+// ROUTES
+import { userRouter } from "./users/users.routes.ts";
+import { simpleUserRouter } from "./users.routes.ts";
 
+// MOUDLES
 const logRoute = morgan("dev");
 
-// ...
+// INIT
 const PORT = 3001;
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-// app.use(logRoute);
+
+// ROUTES
+app.use("/users", userRouter);
+app.use("/simple-users", simpleUserRouter);
 
 // Logge bestimmte Route
 app.get("/log", logRoute, (req, res) => {
