@@ -24,19 +24,3 @@ export async function createUser(username: string) {
 
   return newUser;
 }
-
-// user.service.ts
-
-// interface User {
-//   id: number;
-//   username: String;
-// }
-
-// const users: User[] = [
-//   { id: 1, username: "mario93" },
-//   { id: 2, username: "till85" },
-// ];
-
-// export async function getUserById(userId: number) {
-//   return users.find((user) => user.id === userId) ?? null;
-// }

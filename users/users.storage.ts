@@ -1,28 +1,17 @@
-import { promises as fs } from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { readJsonArray, writeJsonArray } from "../helpers/json-file.ts";
 
 export interface User {
   id: number;
   username: string;
 }
 
-// Create path to users.json
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const usersFilePath = path.join(__dirname, "users.json");
+const basePath = import.meta.url;
+const fileName = "users.json";
 
 export async function readUsers(): Promise<User[]> {
-  const fileContent = await fs.readFile(usersFilePath, "utf-8");
-  const parsed = fileContent.trim() ? JSON.parse(fileContent) : [];
-
-  if (!Array.isArray(parsed)) {
-    throw new Error("Invalid users.json format: expected an array");
-  }
-
-  return parsed as User[];
+  return readJsonArray<User>(basePath, fileName);
 }
 
 export async function writeUsers(users: User[]): Promise<void> {
-  await fs.writeFile(usersFilePath, JSON.stringify(users, null, 2), "utf-8");
+  await writeJsonArray<User>(basePath, fileName, users);
 }
