@@ -1,4 +1,4 @@
-import { readUsers, writeUsers, type User } from "./users.storage.ts";
+import { readUsers, writeUsers, type User } from "../databases/users.storage.ts";
 
 export async function getUserById(userId: number) {
   const users = await readUsers();

@@ -1,4 +1,4 @@
-import { readSessions } from "../auth/auth.storage.ts";
+import { readSessions } from "../databases/auth.storage.ts";
 import type { Request, Response, NextFunction } from "express";
 
 export async function checkAuth(

@@ -1,4 +1,8 @@
-import { getUserById, getAllUsers, createUser } from "./users.service.ts";
+import {
+  getUserById,
+  getAllUsers,
+  createUser,
+} from "../services/users.service.ts";
 import type { Request, Response, NextFunction } from "express";
 
 export async function getUser(req: Request, res: Response, next: NextFunction) {

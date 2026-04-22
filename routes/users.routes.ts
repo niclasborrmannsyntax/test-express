@@ -1,5 +1,9 @@
 import express from "express";
-import { getUser, getUsers, createNewUser } from "./users.controller.ts";
+import {
+  getUser,
+  getUsers,
+  createNewUser,
+} from "../controllers/users.controller.ts";
 import { checkAuth } from "../middlewares/checkAuth.ts";
 
 const userRouter = express.Router();

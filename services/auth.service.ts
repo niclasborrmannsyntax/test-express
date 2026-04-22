@@ -1,5 +1,9 @@
 import { v4 as uuid } from "uuid";
-import { readSessions, writeSessions, type Session } from "./auth.storage.ts";
+import {
+  readSessions,
+  writeSessions,
+  type Session,
+} from "../databases/auth.storage.ts";
 
 export async function getName(
   sessionId: string | undefined,
