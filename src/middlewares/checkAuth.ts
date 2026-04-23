@@ -1,5 +1,5 @@
-import { readSessions } from "../databases/auth.storage.ts";
 import type { Request, Response, NextFunction } from "express";
+import { readSessions } from "../databases/auth.storage.ts";
 
 export async function checkAuth(
   req: Request,
@@ -9,7 +9,7 @@ export async function checkAuth(
   const sessionId = req.cookies.sessionId;
   const sessions = await readSessions();
   const userSession = sessions.find(
-    (session) => session.sessionId === sessionId,
+    (session: any) => session.sessionId === sessionId,
   );
   if (!userSession) {
     return res.status(401).json({ error: "Not signed in." });

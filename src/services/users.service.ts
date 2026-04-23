@@ -1,8 +1,18 @@
-import { readUsers, writeUsers, type User } from "../databases/users.storage.ts";
+import {
+  readUsers,
+  writeUsers,
+  type User,
+} from "../databases/users.storage.ts";
+import {
+  InvalidUserDataError,
+  UserNotFoundError,
+} from "../middlewares/handleUserErrors.ts";
 
 export async function getUserById(userId: number) {
   const users = await readUsers();
-  return users.find((user) => user.id === userId) ?? null;
+  const user = users.find((user) => user.id === userId) ?? null;
+  if (!user) throw new UserNotFoundError(String(userId));
+  return user;
 }
 
 export async function getAllUsers() {
@@ -20,7 +30,11 @@ export async function createUser(username: string) {
   };
 
   users.push(newUser);
-  await writeUsers(users);
 
-  return newUser;
+  try {
+    await writeUsers(users);
+    return newUser;
+  } catch (err) {
+    throw new InvalidUserDataError(username);
+  }
 }

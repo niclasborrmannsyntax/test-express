@@ -8,12 +8,7 @@ import type { Request, Response, NextFunction } from "express";
 export async function getUser(req: Request, res: Response, next: NextFunction) {
   try {
     const { userId } = req.params;
-
     const user = await getUserById(Number(userId));
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
     res.json(user);
   } catch (err) {
     next(err);

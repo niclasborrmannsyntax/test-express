@@ -5,6 +5,7 @@ import {
   createNewUser,
 } from "../controllers/users.controller.ts";
 import { checkAuth } from "../middlewares/checkAuth.ts";
+import { handleUserErrors } from "../middlewares/handleUserErrors.ts";
 
 const userRouter = express.Router();
 
