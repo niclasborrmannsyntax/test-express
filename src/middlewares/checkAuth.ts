@@ -1,19 +1,25 @@
 import type { Request, Response, NextFunction } from "express";
-import { readSessions } from "../databases/auth.storage.ts";
+import { findSessionById } from "../repositories/session.repo.ts";
 
 export async function checkAuth(
   req: Request,
   res: Response,
   next: NextFunction,
 ) {
-  const sessionId = req.cookies.sessionId;
-  const sessions = await readSessions();
-  const userSession = sessions.find(
-    (session: any) => session.sessionId === sessionId,
-  );
-  if (!userSession) {
-    return res.status(401).json({ error: "Not signed in." });
+  try {
+    const sessionId = req.cookies.sessionId;
+    if (!sessionId) {
+      return res.status(401).json({ error: "Not signed in." });
+    }
+
+    const userSession = await findSessionById(sessionId);
+    if (!userSession) {
+      return res.status(401).json({ error: "Not signed in." });
+    }
+
+    req.body.user = userSession.username;
+    next();
+  } catch (err) {
+    next(err);
   }
-  req.body.user = userSession.username;
-  next();
 }

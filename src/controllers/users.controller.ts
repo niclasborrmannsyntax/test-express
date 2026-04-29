@@ -1,9 +1,9 @@
-import {
-  getUserById,
-  getAllUsers,
-  createUser,
-} from "../services/users.service.ts";
 import type { Request, Response, NextFunction } from "express";
+import {
+  getAllUsers,
+  getUserById,
+  registerUser,
+} from "../services/users.service.ts";
 
 export async function getUser(req: Request, res: Response, next: NextFunction) {
   try {
@@ -41,7 +41,7 @@ export async function createNewUser(
       });
     }
 
-    const newUser = await createUser(username);
+    const newUser = await registerUser(username);
     res.status(201).json(newUser);
   } catch (err) {
     next(err);

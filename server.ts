@@ -5,6 +5,7 @@ import { userRouter } from "./src/routes/users.routes.ts";
 import { authRouter } from "./src/routes/auth.routes.ts";
 import handleServerErrors from "./src/middlewares/handleServerErrors.ts";
 import { handleUserErrors } from "./src/middlewares/handleUserErrors.ts";
+import { initPostgres } from "./src/databases/init.postgres.ts";
 
 // INIT
 const PORT = 3001;
@@ -19,11 +20,21 @@ app.use(morgan("dev"));
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
 
-// ERROR HANDLING
+// SPECIFIC ROUTES ERROR HANDLING
 app.use(handleUserErrors);
+
+// GLOBAL ERROR HANDLING
 app.use(handleServerErrors);
 
-// START SERVER
-app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}`);
+async function startServer() {
+  await initPostgres();
+
+  app.listen(PORT, () => {
+    console.log(`Server listening on port: ${PORT}`);
+  });
+}
+
+startServer().catch((err) => {
+  console.error("Failed to start server", err);
+  process.exit(1);
 });
