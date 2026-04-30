@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { findSessionById } from "../repositories/session.repo.ts";
+import { findSessionById } from "../repositories/session.repo.js";
 
 export async function checkAuth(
   req: Request,

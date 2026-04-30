@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { getName, login, logout } from "../services/auth.service.ts";
+import { getName, login, logout } from "../services/auth.service.js";
 
 export async function loginUser(
   req: Request,

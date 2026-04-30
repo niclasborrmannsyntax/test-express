@@ -3,9 +3,8 @@ import {
   getUser,
   getUsers,
   createNewUser,
-} from "../controllers/users.controller.ts";
-import { checkAuth } from "../middlewares/checkAuth.ts";
-import { handleUserErrors } from "../middlewares/handleUserErrors.ts";
+} from "../controllers/users.controller.js";
+import { checkAuth } from "../middlewares/checkAuth.js";
 
 const userRouter = express.Router();
 

@@ -1,4 +1,5 @@
 import path from "node:path";
+// import { existsSync } from "node:fs";
 import dotenv from "dotenv";
 import { Pool } from "pg";
 
@@ -10,6 +11,13 @@ let pool: Pool | null = null;
 
 export function getPostgresPool(): Pool {
   if (!pool) {
+    // const configuredHost = process.env.POSTGRES_HOST;
+    // const runningInDocker = existsSync("/.dockerenv");
+    // const postgresHost =
+    //   runningInDocker && configuredHost === "localhost"
+    //     ? "host.docker.internal"
+    //     : configuredHost;
+
     pool = new Pool({
       host: process.env.POSTGRES_HOST,
       port: Number(process.env.POSTGRES_PORT),

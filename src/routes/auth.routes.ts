@@ -1,6 +1,10 @@
 import express from "express";
-import { getProfile, loginUser, logoutUser } from "../controllers/auth.controller.ts";
-import { checkAuth } from "../middlewares/checkAuth.ts";
+import {
+  getProfile,
+  loginUser,
+  logoutUser,
+} from "../controllers/auth.controller.js";
+import { checkAuth } from "../middlewares/checkAuth.js";
 
 const authRouter = express.Router();
 

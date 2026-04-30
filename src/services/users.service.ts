@@ -2,7 +2,7 @@ import {
   createUser,
   findUserById,
   findAllUsers,
-} from "../repositories/user.repo.ts";
+} from "../repositories/user.repo.js";
 
 export async function registerUser(username: string) {
   // Business-Regel

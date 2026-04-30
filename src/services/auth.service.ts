@@ -1,9 +1,9 @@
-import { v4 as uuid } from "uuid";
+import { randomUUID } from "node:crypto";
 import {
   createSession,
   deleteSession,
   findSessionById,
-} from "../repositories/session.repo.ts";
+} from "../repositories/session.repo.js";
 
 export async function getName(
   sessionId: string | undefined,
@@ -17,7 +17,7 @@ export async function getName(
 }
 
 export async function login(username: string): Promise<string | null> {
-  const sessionId = uuid();
+  const sessionId = randomUUID();
 
   await createSession(sessionId, username);
 

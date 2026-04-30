@@ -3,7 +3,7 @@ import {
   getAllUsers,
   getUserById,
   registerUser,
-} from "../services/users.service.ts";
+} from "../services/users.service.js";
 
 export async function getUser(req: Request, res: Response, next: NextFunction) {
   try {

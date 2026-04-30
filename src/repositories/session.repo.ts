@@ -1,4 +1,4 @@
-import { getPostgresPool } from "../databases/pool.postgres.ts";
+import { getPostgresPool } from "../databases/pool.postgres.js";
 import type { Session } from "../models/session.model.ts";
 
 const pool = getPostgresPool();
