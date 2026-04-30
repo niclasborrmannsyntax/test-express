@@ -24,8 +24,6 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
 
-    // FOR TS IMPORTS
-
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,

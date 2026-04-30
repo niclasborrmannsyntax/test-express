@@ -5,7 +5,6 @@ import { userRouter } from "./src/routes/users.routes.js";
 import { authRouter } from "./src/routes/auth.routes.js";
 import handleServerErrors from "./src/middlewares/handleServerErrors.js";
 import { handleUserErrors } from "./src/middlewares/handleUserErrors.js";
-// import { initPostgres } from "./src/databases/init.postgres.js";
 
 // INIT
 const PORT = Number(process.env.PORT ?? 3000);
