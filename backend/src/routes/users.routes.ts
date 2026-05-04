@@ -8,8 +8,8 @@ import { checkAuth } from "../middlewares/checkAuth.js";
 
 const userRouter = express.Router();
 
-userRouter.get("/:userId", checkAuth, getUser);
-userRouter.get("/", checkAuth, getUsers);
-userRouter.post("/", checkAuth, createNewUser);
+userRouter.get("/:userId", getUser);
+userRouter.get("/", getUsers);
+userRouter.post("/", createNewUser);
 
 export { userRouter };

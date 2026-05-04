@@ -1,4 +1,23 @@
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+  backend:
+    container_name: backend
+    build: ./backend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      POSTGRES_HOST: db
   db:
     image: postgres:15
     container_name: pg-db
@@ -15,18 +34,5 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./db/init:/docker-entrypoint-initdb.d
-  backend:
-    container_name: backend
-    build: .
-    restart: always
-    ports:
-      - "3000:3000"
-    depends_on:
-      db:
-        condition: service_healthy
-    env_file:
-      - .env
-    environment:
-      POSTGRES_HOST: db
 volumes:
   pgdata:
